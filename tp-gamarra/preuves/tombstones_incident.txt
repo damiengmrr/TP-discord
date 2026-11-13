@@ -1,0 +1,3 @@
+Source : collage Terminal de l’étudiant (script tronque volontairement l’exception à 160 caractères).
+initial : 50 message(s) lu(s) en 5 ms
+après 119999 suppressions ligne par ligne (il reste 1 message, le plus ancien) : ÉCHEC après 129 ms : Error from server: code=1300 [Replica(s) failed to execute read] message="Operation failed - received 0 responses and 1 failures: READ_TOO_MANY_TOMBSTONES from 

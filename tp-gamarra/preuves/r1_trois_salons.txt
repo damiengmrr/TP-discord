@@ -1,0 +1,7 @@
+Source : sortie réelle de sql/06_mesure_r1_trois_salons.sql, PostgreSQL, 13/11/2026
+Même requête R1 avec JOIN app.utilisateur pour récupérer le pseudo auteur, ORDER BY m.id DESC, LIMIT 50.
+Salon chaud 775 : 50 lignes retournées, psql Time: 2.262 ms
+Salon moyen 424 : 50 lignes retournées, psql Time: 0.648 ms
+Salon clairsemé 340 : 2 lignes retournées, psql Time: 0.195 ms
+Résultats complets du Terminal (identifiants, textes, auteurs, dates) : terminal_verifications_finales_13-11-2026.txt
+Ces chronométrages ponctuels (psql) ne sont pas les p50/p95 du benchmark B1.

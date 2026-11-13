@@ -1,0 +1,11 @@
+Extrait de la sortie réelle de sql/04_preuves.sql (Mac de l’étudiant, 13/11/2026) :
+NOTICE:  Preuve 1 email unique : duplicate key value violates unique constraint "utilisateur_email_key"
+NOTICE:  Preuve 2 rôle : new row for relation "membre" violates check constraint "membre_role_check"
+NOTICE:  Preuve 3 type salon : new row for relation "salon" violates check constraint "salon_type_check"
+NOTICE:  Preuve 4 nom salon : duplicate key value violates unique constraint "salon_serveur_id_nom_key"
+NOTICE:  Preuve 5 ordre amitié : new row for relation "amitie" violates check constraint "amitie_check"
+NOTICE:  Preuve 6 FK serveur : insert or update on table "salon" violates foreign key constraint "salon_serveur_id_fkey"
+NOTICE:  Preuve 7 vocal : message_dans_salon_vocal: salon 9
+NOTICE:  Preuve 8 non-membre : auteur_non_membre: utilisateur 1, serveur 1
+NOTICE:  Preuve 9 compteur: 12 -> 13 -> 12
+DO

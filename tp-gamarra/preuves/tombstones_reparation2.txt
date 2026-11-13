@@ -1,0 +1,9 @@
+Séquence exécutée : ALTER gc_grace_seconds=0; nodetool flush; nodetool compact; lecture; ALTER gc_grace_seconds=864000.
+Sortie réelle de la lecture :
+
+ message_id
+------------
+          1
+
+(1 rows)
+La dernière commande de restauration est dans le collage, sans affichage distinct de son état.

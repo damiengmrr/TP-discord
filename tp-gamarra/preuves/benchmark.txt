@@ -1,0 +1,32 @@
+Contrôles de cohérence B1/B2/B3/B3bis/B4 : OK
+| Cas | Moteur | p50 (ms) | p95 (ms) |
+|---|---|---:|---:|
+| B1 50 derniers, salon chaud | PostgreSQL | 0.141 | 0.227 |
+| B1 50 derniers, salon chaud | Redis cache (TP1) | 0.117 | 0.130 |
+| B1 50 derniers, salon chaud | MongoDB | 0.230 | 0.248 |
+| B1 50 derniers, salon chaud | Cassandra | 1.289 | 3.069 |
+| B1 50 derniers, salon chaud | Cassandra fenêtres | 5.880 | 8.353 |
+| B1 50 derniers, salon moyen | PostgreSQL | 0.190 | 0.498 |
+| B1 50 derniers, salon moyen | Redis cache (TP1) | 0.103 | 0.115 |
+| B1 50 derniers, salon moyen | MongoDB | 0.228 | 0.252 |
+| B1 50 derniers, salon moyen | Cassandra | 63.962 | 77.543 |
+| B1 50 derniers, salon moyen | Cassandra fenêtres | 64.374 | 75.834 |
+| B1 50 derniers, salon clairsemé | PostgreSQL | 0.197 | 0.578 |
+| B1 50 derniers, salon clairsemé | Redis cache (TP1) | 0.110 | 0.120 |
+| B1 50 derniers, salon clairsemé | MongoDB | 0.203 | 0.220 |
+| B1 50 derniers, salon clairsemé | Cassandra | 90.181 | 110.618 |
+| B1 50 derniers, salon clairsemé | Cassandra fenêtres | 12.040 | 14.878 |
+| B2a battement | PostgreSQL | 0.294 | 0.527 |
+| B2a battement | Redis | 0.115 | 0.137 |
+| B2b en ligne | PostgreSQL | 0.241 | 0.259 |
+| B2b en ligne | Redis | 0.939 | 1.039 |
+| B3 serveurs suggérés | PostgreSQL | 0.147 | 0.234 |
+| B3 serveurs suggérés | Neo4j | 0.919 | 1.256 |
+| B3bis amis d’amis | PostgreSQL | 0.452 | 0.672 |
+| B3bis amis d’amis | Neo4j | 1.410 | 1.984 |
+| B4 activité serveur | PostgreSQL normalisé | 3.682 | 3.865 |
+| B4 activité serveur | PostgreSQL vue | 0.151 | 0.223 |
+| B4 activité serveur | MongoDB | 2.183 | 2.336 |
+| B4 activité serveur | Redis cache (TP1) | 0.134 | 0.234 |
+| H5 appartenance simple | PostgreSQL | 0.118 | 0.130 |
+| H5 appartenance simple | Redis | 0.097 | 0.108 |

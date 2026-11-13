@@ -1,0 +1,315 @@
+(.venv) damiengmrr\@MacBook-Pro-de-Damien \~/Downloads/tp-gamarra $ cd \~/Downloads
+
+unzip -o TP2_Discord_MAJ_MESURES.zip -d \~/Downloads
+
+cd \~/Downloads/tp-gamarra
+
+Archive:  TP2_Discord_MAJ_MESURES.zip
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/MESURES.md  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/DOSSIER_ARCHI.md  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/RUNBOOK_tombstones.md  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/README.md  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/sql/06_mesure_r1_trois_salons.sql  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/chargement.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/cassandra_logs.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/explain_r3.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/tombstones_incident.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/mesure0_csv.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/benchmark.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/ttl.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/tombstones_reparation2.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/tombstones_reproduction2.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/requetes_sql.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/contraintes.txt  
+
+  inflating: /Users/damiengmrr/Downloads/tp-gamarra/preuves/tombstones_reparation1.txt  
+
+(.venv) damiengmrr\@MacBook-Pro-de-Damien \~/Downloads/tp-gamarra $ system_profiler SPHardwareDataType | grep -E 'Model Name:|Chip:|Processor Name:|Memory:'
+
+sw_vers -productVersion
+
+2026-11-13 12:36:42.973 system_profiler[55879:910471] hw\.cpufamily: 0x5f4dea93
+
+      Model Name: MacBook Pro
+
+      Chip: Apple M3 Pro
+
+      Memory: 36 GB
+
+26.5.1
+
+(.venv) damiengmrr\@MacBook-Pro-de-Damien \~/Downloads/tp-gamarra $ docker compose --profile colonne exec -T cassandra cqlsh -e "SELECT gc_grace_seconds FROM system_schema.tables WHERE keyspace_name='discord' AND table_name='messages_par_salon';"
+
+
+
+ gc_grace_seconds
+
+\------------------
+
+           864000
+
+
+
+(1 rows)
+
+(.venv) damiengmrr\@MacBook-Pro-de-Damien \~/Downloads/tp-gamarra $ docker compose exec -T postgres psql \\
+
+  -U tp -d discord -v ON_ERROR_STOP=1 \\
+
+  < sql/06_mesure_r1_trois_salons.sql \\
+
+  | tee preuves/r1_trois_salons.txt
+
+Timing is on.
+
+         id          |              contenu              |           envoye_le           |  pseudo   
+
+\---------------------+-----------------------------------+-------------------------------+-----------
+
+ 1566236554475901907 | on se retrouve à 21h              | 2026-10-31 23:44:53.855343+00 | orbit4644
+
+ 1566229019559760832 | je confirme                       | 2026-10-31 23:14:57.391986+00 | kiwi676
+
+ 1566221965273109417 | je confirme                       | 2026-10-31 22:46:55.518522+00 | orbit1952
+
+ 1566215754716844954 | ok pour ce soir                   | 2026-10-31 22:22:14.806249+00 | mango2822
+
+ 1566215600420983705 | qui est dispo pour jouer ?        | 2026-10-31 22:21:38.019953+00 | echo4597
+
+ 1566214349268489111 | salut tout le monde               | 2026-10-31 22:16:39.721033+00 | kiwi2985
+
+ 1566212154229822352 | ok pour ce soir                   | 2026-10-31 22:07:56.383681+00 | nova1552
+
+ 1566208177022997383 | salut tout le monde               | 2026-10-31 21:52:08.143018+00 | sparks405
+
+ 1566204314643633017 | bien vu                           | 2026-10-31 21:36:47.28+00     | orbit1952
+
+ 1566193404873053018 | mdr                               | 2026-10-31 20:53:26.188464+00 | echo3488
+
+ 1566191381024904022 | super idée                        | 2026-10-31 20:45:23.665486+00 | lynx1844
+
+ 1566187561607795537 | ok pour ce soir                   | 2026-10-31 20:30:13.045531+00 | pixel1266
+
+ 1566179074064552765 | voilà le lien                     | 2026-10-31 19:56:29.457605+00 | pixel4913
+
+ 1566170980681028388 | bien vu                           | 2026-10-31 19:24:19.844813+00 | orbit3478
+
+ 1566145006014862032 | ok pour ce soir                   | 2026-10-31 17:41:07.001939+00 | mango4246
+
+ 1566137603554841271 | merci !                           | 2026-10-31 17:11:42.117553+00 | echo840
+
+ 1566127116788208286 | bien vu                           | 2026-10-31 16:30:01.877607+00 | mango3514
+
+ 1566106931670848099 | je regarde ça demain              | 2026-10-31 15:09:49.370009+00 | orbit2146
+
+ 1566105279920378460 | bien vu                           | 2026-10-31 15:03:15.562758+00 | orbit2624
+
+ 1566095339629613628 | je regarde ça demain              | 2026-10-31 14:23:45.612889+00 | echo2800
+
+ 1566093129181073975 | voilà le lien                     | 2026-10-31 14:14:58.600252+00 | byte1707
+
+ 1566092998134239798 | je regarde ça demain              | 2026-10-31 14:14:27.356971+00 | mango2121
+
+ 1566074932293833211 | quelqu'un a vu le dernier patch ? | 2026-10-31 13:02:40.124417+00 | fox4699
+
+ 1566050135132377540 | super idée                        | 2026-10-31 11:24:08.020502+00 | raven3941
+
+ 1566042697012384172 | bien vu                           | 2026-10-31 10:54:34.634955+00 | mango1158
+
+ 1566032333482791309 | on se retrouve à 21h              | 2026-10-31 10:13:23.776843+00 | lynx3686
+
+ 1566030763777102217 | qui est dispo pour jouer ?        | 2026-10-31 10:07:09.529687+00 | echo3818
+
+ 1566025448016875893 | je confirme                       | 2026-10-31 09:46:02.153423+00 | fox3984
+
+ 1566017897120436570 | qui est dispo pour jouer ?        | 2026-10-31 09:16:01.879503+00 | mango4455
+
+ 1566014016575541586 | super idée                        | 2026-10-31 09:00:36.685713+00 | lynx4977
+
+ 1565994685112291617 | qui est dispo pour jouer ?        | 2026-10-31 07:43:47.705255+00 | mango3614
+
+ 1565994206873555232 | quelqu'un a vu le dernier patch ? | 2026-10-31 07:41:53.684987+00 | zen1821
+
+ 1565990749789786389 | je confirme                       | 2026-10-31 07:28:09.451738+00 | echo1207
+
+ 1565945746120020110 | merci !                           | 2026-10-31 04:29:19.740414+00 | echo4374
+
+ 1565942893880053894 | quelqu'un a vu le dernier patch ? | 2026-10-31 04:17:59.713511+00 | pixel1641
+
+ 1565935284498239603 | quelqu'un a vu le dernier patch ? | 2026-10-31 03:47:45.495109+00 | mango853
+
+ 1565933720802988141 | mdr                               | 2026-10-31 03:41:32.681212+00 | zen2454
+
+ 1565889071082147839 | bien vu                           | 2026-10-31 00:44:07.358713+00 | atlas4771
+
+ 1565885749889634294 | salut tout le monde               | 2026-10-31 00:30:55.524558+00 | byte1125
+
+ 1565858433629196201 | voilà le lien                     | 2026-10-30 22:42:22.820294+00 | raven1049
+
+ 1565858274585382822 | je confirme                       | 2026-10-30 22:41:44.901417+00 | nova4575
+
+ 1565846281052786565 | merci !                           | 2026-10-30 21:54:05.420784+00 | raven224
+
+ 1565845855532257155 | on se retrouve à 21h              | 2026-10-30 21:52:23.968847+00 | zen3469
+
+ 1565845547779395456 | bien vu                           | 2026-10-30 21:51:10.594493+00 | atlas3036
+
+ 1565844513828933496 | merci !                           | 2026-10-30 21:47:04.081323+00 | orbit411
+
+ 1565839505293086569 | mdr                               | 2026-10-30 21:27:09.953558+00 | fox2575
+
+ 1565835589042081629 | bien vu                           | 2026-10-30 21:11:36.246179+00 | lynx4678
+
+ 1565826025043300164 | salut tout le monde               | 2026-10-30 20:33:36.011125+00 | mango4010
+
+ 1565825983637131075 | je confirme                       | 2026-10-30 20:33:26.139715+00 | echo4761
+
+ 1565815739628425005 | voilà le lien                     | 2026-10-30 19:52:43.777674+00 | zen1426
+
+(50 rows)
+
+
+
+Time: 2.262 ms
+
+         id          |              contenu              |           envoye_le           |   pseudo   
+
+\---------------------+-----------------------------------+-------------------------------+------------
+
+ 1565571041806552170 | salut tout le monde               | 2026-10-30 03:40:23.2705+00   | sparks2552
+
+ 1565460614036622142 | voilà le lien                     | 2026-10-29 20:21:35.238973+00 | sparks3225
+
+ 1563401606589084982 | on se retrouve à 21h              | 2026-10-24 03:59:49.608945+00 | mango1563
+
+ 1563067859826143657 | quelqu'un a vu le dernier patch ? | 2026-10-23 05:53:38.17924+00  | fox825
+
+ 1562465244117494587 | quelqu'un a vu le dernier patch ? | 2026-10-21 13:59:03.398461+00 | byte375
+
+ 1562174208375810047 | merci !                           | 2026-10-20 18:42:35.070233+00 | fox825
+
+ 1561410977768169497 | on se retrouve à 21h              | 2026-10-18 16:09:46.71343+00  | mango2292
+
+ 1560273403838223491 | ok pour ce soir                   | 2026-10-15 12:49:27.953132+00 | byte375
+
+ 1558052570289945892 | super idée                        | 2026-10-09 09:44:39.974932+00 | sparks3225
+
+ 1557970029247740993 | on se retrouve à 21h              | 2026-10-09 04:16:40.656941+00 | atlas2224
+
+ 1557908802614082477 | mdr                               | 2026-10-09 00:13:23.089939+00 | sparks1943
+
+ 1557602600155887685 | voilà le lien                     | 2026-10-08 03:56:38.734863+00 | lynx4093
+
+ 1557370960351606252 | on se retrouve à 21h              | 2026-10-07 12:36:11.5011+00   | atlas2953
+
+ 1555922580123428584 | salut tout le monde               | 2026-10-03 12:40:50.745851+00 | byte375
+
+ 1554010118688084595 | je confirme                       | 2026-09-28 06:01:24.407004+00 | lynx4093
+
+ 1553610007243918893 | merci !                           | 2026-09-27 03:31:30.405423+00 | sparks3742
+
+ 1551828861241785130 | voilà le lien                     | 2026-09-22 05:33:52.106183+00 | zen3027
+
+ 1551612035559848143 | voilà le lien                     | 2026-09-21 15:12:16.835638+00 | raven4475
+
+ 1549743984530941099 | bien vu                           | 2026-09-16 11:29:18.763299+00 | atlas2224
+
+ 1548117682094854950 | je regarde ça demain              | 2026-09-11 23:46:58.047738+00 | atlas2953
+
+ 1547846612154568785 | quelqu'un a vu le dernier patch ? | 2026-09-11 05:49:49.937905+00 | lynx2041
+
+ 1546487824466035205 | on se retrouve à 21h              | 2026-09-07 11:50:29.707713+00 | byte375
+
+ 1546208499573440260 | merci !                           | 2026-09-06 17:20:33.463198+00 | raven4475
+
+ 1545209189255853177 | ok pour ce soir                   | 2026-09-03 23:09:39.317236+00 | sparks3742
+
+ 1544808432845172825 | on se retrouve à 21h              | 2026-09-02 20:37:11.543949+00 | lynx1744
+
+ 1540414507862688145 | on se retrouve à 21h              | 2026-08-21 17:37:18.192213+00 | kiwi4849
+
+ 1538129485264808261 | je confirme                       | 2026-08-15 10:17:26.351665+00 | lynx2041
+
+ 1537589219109856087 | ok pour ce soir                   | 2026-08-13 22:30:36.862334+00 | raven4475
+
+ 1536688755094804924 | merci !                           | 2026-08-11 10:52:29.511046+00 | byte375
+
+ 1531828559444911840 | je confirme                       | 2026-07-29 00:59:48.570099+00 | mango2292
+
+ 1531574975482504209 | on se retrouve à 21h              | 2026-07-28 08:12:09.44297+00  | atlas2224
+
+ 1530689463934720630 | je regarde ça demain              | 2026-07-25 21:33:27.037147+00 | raven4475
+
+ 1529398479011646644 | je regarde ça demain              | 2026-07-22 08:03:32.24665+00  | mango2292
+
+ 1528792407368468076 | on se retrouve à 21h              | 2026-07-20 15:55:13.506309+00 | lynx1744
+
+ 1526857133885419945 | quelqu'un a vu le dernier patch ? | 2026-07-15 07:45:08.352959+00 | luna3017
+
+ 1526588718520135417 | mdr                               | 2026-07-14 13:58:33.142015+00 | mango1563
+
+ 1523790565861413071 | salut tout le monde               | 2026-07-06 20:39:41.561632+00 | fox1028
+
+ 1523479469984238931 | je regarde ça demain              | 2026-07-06 00:03:30.524908+00 | kiwi4849
+
+ 1520225979065346646 | salut tout le monde               | 2026-06-27 00:35:17.842702+00 | fox825
+
+ 1519930751368472313 | mdr                               | 2026-06-26 05:02:10.074864+00 | atlas2953
+
+ 1519266068701552514 | merci !                           | 2026-06-24 09:00:57.377406+00 | sparks1943
+
+ 1516919740621293119 | on se retrouve à 21h              | 2026-06-17 21:37:29.170991+00 | sparks3742
+
+ 1516245766769901355 | qui est dispo pour jouer ?        | 2026-06-16 00:59:21.282421+00 | atlas2224
+
+ 1515846791856290585 | on se retrouve à 21h              | 2026-06-14 22:33:58.250691+00 | byte375
+
+ 1514633657229405844 | voilà le lien                     | 2026-06-11 14:13:24.416769+00 | lynx4093
+
+ 1514350563406539647 | quelqu'un a vu le dernier patch ? | 2026-06-10 19:28:29.589214+00 | atlas2224
+
+ 1513877099683931706 | voilà le lien                     | 2026-06-09 12:07:07.041181+00 | fox1028
+
+ 1508387459791203437 | je confirme                       | 2026-05-25 08:33:14.898096+00 | mango2292
+
+ 1507900801421551474 | super idée                        | 2026-05-24 00:19:26.501452+00 | atlas2953
+
+ 1505342927315012592 | qui est dispo pour jouer ?        | 2026-05-16 22:55:21.791106+00 | fox825
+
+(50 rows)
+
+
+
+Time: 0.648 ms
+
+         id          |       contenu        |           envoye_le           |  pseudo  
+
+\---------------------+----------------------+-------------------------------+----------
+
+ 1506449269769508853 | bien vu              | 2026-05-20 00:11:34.387945+00 | atlas920
+
+ 1495704893778929071 | on se retrouve à 21h | 2026-04-20 08:37:15.530799+00 | luna4127
+
+(2 rows)
+
+
+
+Time: 0.195 ms
+
+(.venv) damiengmrr\@MacBook-Pro-de-Damien \~/Downloads/tp-gamarra $ 

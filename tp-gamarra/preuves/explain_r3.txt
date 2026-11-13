@@ -1,0 +1,52 @@
+EXPLAIN (ANALYZE, BUFFERS), serveur 118, octobre 2026 (collage terminal)
+GroupAggregate  (cost=4134.80..4137.87 rows=123 width=20) (actual time=4.883..5.047 rows=31 loops=1)
+
+   Group Key: (((m.envoye_le AT TIME ZONE 'UTC'::text))::date)
+
+   Buffers: shared hit=5645
+
+   ->  Sort  (cost=4134.80..4135.11 rows=123 width=8) (actual time=4.873..4.925 rows=1928 loops=1)
+
+         Sort Key: (((m.envoye_le AT TIME ZONE 'UTC'::text))::date), m.auteur_id
+
+         Sort Method: quicksort  Memory: 109kB
+
+         Buffers: shared hit=5645
+
+         ->  Nested Loop  (cost=15.96..4130.53 rows=123 width=8) (actual time=2.373..4.538 rows=1928 loops=1)
+
+               Buffers: shared hit=5645
+
+               ->  Index Scan using salon_pkey on salon s  (cost=0.28..48.32 rows=4 width=4) (actual time=0.045..0.055 rows=4 loops=1)
+
+                     Filter: (serveur_id = 118)
+
+                     Rows Removed by Filter: 970
+
+                     Buffers: shared hit=12
+
+               ->  Bitmap Heap Scan on message m  (cost=15.68..1019.97 rows=43 width=16) (actual time=0.968..1.063 rows=482 loops=4)
+
+                     Recheck Cond: (salon_id = s.id)
+
+                     Filter: ((envoye_le >= '2026-10-01 00:00:00+00'::timestamp with time zone) AND (envoye_le < '2026-11-01 00:00:00+00'::timestamp with time zone))
+
+                     Rows Removed by Filter: 4377
+
+                     Heap Blocks: exact=5496
+
+                     Buffers: shared hit=5633
+
+                     ->  Bitmap Index Scan on message_salon_id_desc_idx  (cost=0.00..15.67 rows=433 width=0) (actual time=0.176..0.176 rows=4859 loops=4)
+
+                           Index Cond: (salon_id = s.id)
+
+                           Buffers: shared hit=137
+
+ Planning:
+
+   Buffers: shared hit=14
+
+ Planning Time: 0.103 ms
+
+ Execution Time: 5.079 ms

@@ -1,0 +1,20 @@
+Extrait de la sortie réelle de sql/02_chargement.sql (Mac de l’étudiant, 13/11/2026) :
+INSERT 0 5000
+INSERT 0 150
+INSERT 0 974
+INSERT 0 7984
+INSERT 0 300000
+INSERT 0 15000
+COMMIT
+REFRESH MATERIALIZED VIEW
+       tab     | staging | app    | verdict
+    amities   | 15000   | 15000  | OK
+    membres   | 7984    | 7984   | OK
+    messages  | 300000  | 300000 | OK
+    salons    | 974     | 974    | OK
+    serveurs  | 150     | 150    | OK
+    utilisateurs | 5000 | 5000   | OK
+proprietaires_invalides: 0
+messages_dans_salons_vocaux: 0
+compteurs_faux: 0
+Note : tableau réordonné/condensé depuis le collage terminal, sans modifier les valeurs.

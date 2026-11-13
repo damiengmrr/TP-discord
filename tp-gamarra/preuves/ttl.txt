@@ -1,0 +1,4 @@
+t=0s  Redis present: True TTL: 2
+t=3s  Redis present: False TTL: -2
+PostgreSQL : la présence reste dans la table après expiration logique tant qu’une purge n’est pas effectuée.
+Lignes encore enregistrées : 0 (instant de ce test, pas preuve de purge automatique).

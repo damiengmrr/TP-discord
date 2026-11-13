@@ -1,0 +1,2 @@
+initial : 50 message(s) lu(s) en 7 ms
+après 119999 suppressions ligne par ligne (il reste 1 message, le plus ancien) : ÉCHEC après 85 ms : Error from server: code=1300 [Replica(s) failed to execute read] message="Operation failed - received 0 responses and 1 failures: READ_TOO_MANY_TOMBSTONES from 

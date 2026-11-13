@@ -1,0 +1,8 @@
+Source : Terminal de l’étudiant (13/11/2026)
+Model Name: MacBook Pro
+Chip: Apple M3 Pro
+Memory: 36 GB
+macOS: 26.5.1
+Cassandra SELECT gc_grace_seconds (system_schema.tables): 864000 secondes (10 jours).
+Mémoire attribuée à Docker Desktop : valeur non relevée par cette commande.
+Preuve intégrale : terminal_verifications_finales_13-11-2026.txt

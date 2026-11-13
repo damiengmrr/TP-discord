@@ -1,0 +1,8 @@
+Relevés du terminal du 13 novembre 2026, SQL 03_requetes.sql :
+R1 salon 775 : 50 lignes, Time: 1.881 ms
+R2 membre peut écrire : uid=1, salon_id=577, peut_ecrire=t, Time: 0.879 ms
+R3 serveur 118 / octobre : 31 lignes, Time: 7.802 ms
+EXPLAIN ANALYZE R3 : Execution Time: 5.079 ms (psql Time: 5.401 ms)
+R3 via vue matérialisée : 31 lignes, Time: 0.280 ms
+REFRESH MATERIALIZED VIEW : Time: 182.418 ms
+Sortie détaillée EXPLAIN : voir explain_r3.txt.

@@ -1,0 +1,14 @@
+| CSV | Lignes hors en-tête |
+|---|---:|
+| utilisateurs | 5000 |
+| serveurs | 150 |
+| salons | 974 |
+| membres | 7984 |
+| messages | 300000 |
+| amities | 15000 |
+Min: 0 Médiane: 41.0 Max: 12952
+Top10: 68101 / 300000 = 22.70%
+Salons <20: 375 dont sans messages: 227
+Test chaud : salon 775, 12952 messages
+Test moyen : salon 424, 90 messages
+Test clairsemé : salon 340, 2 messages
